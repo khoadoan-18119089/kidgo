@@ -22,6 +22,11 @@ class CusTextField extends TextField {
     super.maxLines,
     super.minLines,
     super.onTap,
+    super.maxLength,
+    super.autofocus,
+    super.focusNode,
+    super.textAlign,
+    super.textInputAction,
   }) : super(
           decoration: decoration ??
               InputDecoration(

@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 
   static final MyAppTheme _theme = MyAppTheme.intanse;
   static final Routes _routes = Routes.intanse;
+  static final FocusManager _focusManager = FocusManager.instance;
 
   static Future<T?> to<T extends Object?>(
     BuildContext context, {
@@ -50,5 +51,17 @@ class MyApp extends StatelessWidget {
     Object? result,
   }) {
     Navigator.pop(context, result);
+  }
+
+  static void unfocus() {
+    _focusManager.primaryFocus?.unfocus();
+  }
+
+  static bool nextFocus() {
+    return _focusManager.primaryFocus?.nextFocus() ?? false;
+  }
+
+  static bool previousFocus() {
+    return _focusManager.primaryFocus?.previousFocus() ?? false;
   }
 }

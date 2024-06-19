@@ -21,6 +21,8 @@ class Routes {
         return login(settings);
       case Screems.signup:
         return signup(settings);
+      case Screems.otp:
+        return otp(settings);
     }
   }
 }

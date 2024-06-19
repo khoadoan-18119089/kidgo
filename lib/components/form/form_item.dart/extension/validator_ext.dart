@@ -1,4 +1,5 @@
 import 'package:kidgo/components/form/form_item.dart/extension/messege_ext.dart';
+import 'package:kidgo/components/form/form_item.dart/extension/regexp_ext.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 
 extension ValidatorEXT<T> on FormItem<T> {
@@ -16,6 +17,8 @@ extension ValidatorEXT<T> on FormItem<T> {
         return _dateTime(value);
       case FormItemType.radio:
         return _radio(value);
+      case FormItemType.otp:
+        return null;
     }
   }
 
@@ -46,9 +49,7 @@ extension ValidatorEXT<T> on FormItem<T> {
     if (email == null || email.isEmpty) {
       return isRequired ? invalid : null;
     }
-    if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-            .hasMatch(email) &&
-        isRequired) {
+    if (!regexpEmail.hasMatch(email) && isRequired) {
       return customInvalid;
     }
     return null;
@@ -57,11 +58,23 @@ extension ValidatorEXT<T> on FormItem<T> {
   String? _password(T? value) {
     String? password;
     if (value is String) password = value;
-    if (password == null || password.isEmpty) {
-      return isRequired ? invalid : null;
-    }
-    if (password.length < 6 && isRequired) {
-      return customInvalid;
+
+    if (isRequired) {
+      if (password == null || password.isEmpty) {
+        return invalid;
+      }
+      if (password.length < 6) {
+        return customInvalid;
+      }
+      if (!regexpSpecialCharacter.hasMatch(password)) {
+        return passSpecialCharacterInvalid;
+      }
+      if (!regexpNumber.hasMatch(password)) {
+        return passNumberInvalid;
+      }
+      if (!regexpUppercaseLetter.hasMatch(password)) {
+        return passUppercaseLetterInvalid;
+      }
     }
     return null;
   }

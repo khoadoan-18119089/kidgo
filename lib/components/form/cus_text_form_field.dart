@@ -8,10 +8,12 @@ class CusTextFormField extends CusFormField<String> {
     super.key,
     required super.formItem,
     Widget? prefixIcon,
+    TextInputAction? textInputAction,
   }) : super(
           builder: (field) {
             return CusTextField(
               key: key,
+              textInputAction: textInputAction,
               prefixIcon: prefixIcon,
               controller: field.textController,
               lable: formItem.lable,
@@ -27,13 +29,13 @@ class CusTextFormField extends CusFormField<String> {
         );
 
   @override
-  CusFormFieldState<String> createState() => _CusTextFormFieldState();
+  FormFieldState<String> createState() => _CusTextFormFieldState();
 }
 
 class _CusTextFormFieldState extends CusFormFieldState<String> {
   @override
   void initState() {
-    textController.text = widget.formItem.display(initialValue);
+    textController.text = item.display(initialValue);
     super.initState();
   }
 

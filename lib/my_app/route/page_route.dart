@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kidgo/my_app/route/routes.dart';
 import 'package:kidgo/screems/login/login_screem.dart';
+import 'package:kidgo/screems/otp/otp_screem.dart';
 import 'package:kidgo/screems/review/review_screem.dart';
 import 'package:kidgo/screems/sign_up/sign_up_screem.dart';
 import 'package:kidgo/screems/splash/splash_screem.dart';
@@ -45,6 +46,13 @@ extension PageRoute on Routes {
     return MaterialPageRoute(
       settings: settings,
       builder: (_) => const SignUpScreem(),
+    );
+  }
+
+  Route<dynamic> otp(RouteSettings settings) {
+    return MaterialPageRoute(
+      settings: settings,
+      builder: (_) => const OtpScreem(),
     );
   }
 }

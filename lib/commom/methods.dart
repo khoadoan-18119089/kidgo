@@ -44,4 +44,26 @@ class Methods {
       defaultValue: defaultValue,
     );
   }
+
+  static DateTime? toDateTime(
+    String? source, {
+    DateTime? defaultValue,
+  }) {
+    if (source == null) return defaultValue;
+    if (source.toUpperCase() == 'NULL' || source.isEmpty || source.length < 8) {
+      return defaultValue;
+    }
+    return DateTime.parse(source);
+  }
+
+  static DateTime? getDateTime(
+    Map<String, Object?>? data, {
+    required String fieldName,
+    DateTime? defaultValue,
+  }) {
+    return toDateTime(
+      getDataHasMap(data, fieldName: fieldName).toString(),
+      defaultValue: defaultValue,
+    );
+  }
 }

@@ -1,20 +1,35 @@
+import 'package:kidgo/commom/methods.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 
 extension FormatEXT<T> on FormItem<T> {
   T? tryCast(String? value) {
-    if (value == null) return null;
+    if (value == null || value.isEmpty) return null;
     if (T == String ||
         FormItemType.values
-            .where((item) => item.type == String)
+            .where(
+              (item) => item.type == String,
+            )
             .contains(type)) {
-      if (value.isEmpty) {
-        return null;
-      }
       return value as T;
+    }
+    if (T == int ||
+        FormItemType.values
+            .where(
+              (item) => item.type == int,
+            )
+            .contains(type)) {
+      return Methods.toInt(value) as T;
+    }
+    if (T == DateTime ||
+        FormItemType.values
+            .where(
+              (item) => item.type == DateTime,
+            )
+            .contains(type)) {
+      return Methods.toDateTime(value) as T;
     }
     return null;
   }
-
 
   String formatPhoneNumber(String number) {
     RegExpMatch? match;

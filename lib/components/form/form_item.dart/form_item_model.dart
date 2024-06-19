@@ -8,7 +8,8 @@ enum FormItemType {
   email(String),
   password(int),
   dateTime(DateTime),
-  radio(int)
+  radio(int),
+  otp(int),
   ;
 
   final Type? type;

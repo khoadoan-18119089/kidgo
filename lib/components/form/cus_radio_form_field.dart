@@ -10,7 +10,6 @@ class CusRadioFormField extends CusFormField<int> {
     super.key,
     bool isRequired = false,
     int? idInitialValue,
-    Axis scrollDirection = Axis.horizontal,
     required List<Map<String, Object>> list,
   }) : super(
             formItem: FormItem<int>(

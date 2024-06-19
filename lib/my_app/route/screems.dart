@@ -3,7 +3,8 @@ enum Screems {
   splash,
   review,
   login,
-  signup
+  signup,
+  otp,
   ;
 
   String get path => '/$name';

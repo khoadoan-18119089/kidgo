@@ -6,7 +6,7 @@ extension DisplayEXT<T> on FormItem<T> {
   String displayEXT(T? value) {
     switch (type) {
       case FormItemType.text:
-        return _phone(value);
+        return _text(value);
       case FormItemType.phone:
         return _phone(value);
       case FormItemType.email:
@@ -17,6 +17,8 @@ extension DisplayEXT<T> on FormItem<T> {
         return _dateTime(value);
       case FormItemType.radio:
         return '';
+      case FormItemType.otp:
+        return _otp(value);
     }
   }
 
@@ -37,5 +39,12 @@ extension DisplayEXT<T> on FormItem<T> {
     if (value is DateTime) date = value;
     if (date == null) return '';
     return DateFormat('dd/MM/yyyy').format(date);
+  }
+
+  String _otp(T? value) {
+    int? otp;
+    if (value is int) otp = value;
+    if (otp == null) return '';
+    return otp.toString();
   }
 }

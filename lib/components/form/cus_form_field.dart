@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kidgo/bloc/form_controller_bloc.dart';
+import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 import 'package:kidgo/components/form/cus_form.dart';
 import 'package:kidgo/components/form/form_item.dart/extension/format_ext.dart';
-import 'dart:developer' as dev;
-
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 
 class CusFormField<T> extends FormField<T> {
@@ -18,14 +16,7 @@ class CusFormField<T> extends FormField<T> {
             initialValue: formItem.initialValue,
             validator: formItem.validator,
             builder: (field) {
-              return Focus(
-                key: key,
-                child: builder.call(field as CusFormFieldState<T>),
-                onFocusChange: (isFocus) {
-                  String text = isFocus ? 'Đang nhập liệu' : 'Dừng nhập liệu';
-                  dev.log(text, name: formItem.fieldName);
-                },
-              );
+              return builder.call(field as CusFormFieldState<T>);
             });
 
   final FormItem<T> formItem;
@@ -63,6 +54,7 @@ class CusFormFieldState<T> extends FormFieldState<T> {
   @override
   void deactivate() {
     formState(context).unRegister(this);
+    formController?.close();
     super.deactivate();
   }
 

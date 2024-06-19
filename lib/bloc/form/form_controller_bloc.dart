@@ -7,7 +7,7 @@ part 'form_controller_state.dart';
 class FormControllerBloc extends Bloc<FormControllerEvent, FormUpdate>
     with FormControllerMixin {
   FormControllerBloc() : super(const FormUpdate()) {
-    on<SaveEvent>((event, emit) {
+    on<DidChangeEvent>((event, emit) {
       emit(state.update(fieldDidChange: fieldDidChange()));
     });
   }
@@ -23,7 +23,7 @@ mixin FormControllerMixin on Bloc<FormControllerEvent, FormUpdate> {
 
   void onChanged(BuildContext context) {
     if (state.fieldDidChange != fieldDidChange()) {
-      context.read<FormControllerBloc>().add(SaveEvent());
+      context.read<FormControllerBloc>().add(DidChangeEvent());
     }
   }
 
@@ -71,8 +71,12 @@ mixin FormControllerMixin on Bloc<FormControllerEvent, FormUpdate> {
   }
 
   Map<String, dynamic> saveTempData() {
-    _data.removeWhere((key,value) => value == null);
+    _data.removeWhere((key, value) => value == null);
     return _data;
+  }
+
+  String otp() {
+    return _data.values.join('');
   }
 
   void init({

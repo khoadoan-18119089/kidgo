@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kidgo/bloc/form_controller_bloc.dart';
+import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 import 'package:kidgo/commom/field_name.dart';
 import 'package:kidgo/commom/icon.dart';
 import 'package:kidgo/components/cus_button.dart';
@@ -19,59 +19,74 @@ class LoginScreem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: CusForm(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 100),
-              const CusText.titleLarge('Chào mừng'),
-              const CusText.titleLarge('bạn!'),
-              const CusText.bodyMedium('Hãy đăng nhập tài khoản để tiếp tục.'),
-              const SizedBox(height: 16),
-              CusPhoneFormField(
-                prefixIcon: CusIcon(icon: MyIcons.phone1),
-                formItem: FormItem<String>(
-                  hintText: 'Số điện thoại',
-                  isRequired: true,
-                  fieldName: FieldName.phoneNumber,
-                ),
-              ),
-              const SizedBox(height: 32),
-              Center(
-                child: CusFormSave(builder: (context, canSave) {
-                  return CusButton.elevated(
-                    isExpanded: true,
-                    disable: !canSave,
-                    text: 'Đăng nhập',
-                    onPressed: () {
-                      print(context.read<FormControllerBloc>().saveTempData());
-                    },
-                  );
-                }),
-              ),
-              const SizedBox(height: 24),
-              Center(
-                child: CusText.rich(
-                  'Chưa có tài khoản?  ',
-                  children: [
-                    TextSpan(
-                      text: 'Tạo tài khoản',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontSize: 13,
-                          ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap =
-                            () => MyApp.to(context, screem: Screems.signup),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return GestureDetector(
+      onTap: MyApp.unfocus,
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: CusForm(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 100),
+                const CusText.titleLarge('Chào mừng'),
+                const CusText.titleLarge('bạn!'),
+                const CusText.bodyMedium(
+                    'Hãy đăng nhập tài khoản để tiếp tục.'),
+                const SizedBox(height: 16),
+                _phone(),
+                const SizedBox(height: 32),
+                _dangNhap(),
+                const SizedBox(height: 24),
+                _taoTaiKhoan(context),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _phone() {
+    return CusPhoneFormField(
+      prefixIcon: CusIcon(icon: MyIcons.phone1),
+      formItem: FormItem<String>(
+        hintText: 'Số điện thoại',
+        isRequired: true,
+        fieldName: FieldName.phoneNumber,
+      ),
+    );
+  }
+
+  Widget _dangNhap() {
+    return Center(
+      child: CusFormSave(builder: (context, canSave) {
+        return CusButton.elevated(
+          isExpanded: true,
+          disable: !canSave,
+          text: 'Đăng nhập',
+          onPressed: () {
+            print(context.read<FormControllerBloc>().saveTempData());
+          },
+        );
+      }),
+    );
+  }
+
+  Widget _taoTaiKhoan(BuildContext context) {
+    return Center(
+      child: CusText.rich(
+        'Chưa có tài khoản?  ',
+        children: [
+          TextSpan(
+            text: 'Tạo tài khoản',
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 13,
+                ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => MyApp.to(context, screem: Screems.signup),
+          ),
+        ],
       ),
     );
   }

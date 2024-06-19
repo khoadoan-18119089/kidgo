@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kidgo/bloc/form_controller_bloc.dart';
+import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 
 typedef OnSave = Widget  Function(
   BuildContext context,

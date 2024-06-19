@@ -9,10 +9,12 @@ class CusPhoneFormField extends CusFormField<String> {
     super.key,
     required super.formItem,
     Widget? prefixIcon,
+    TextInputAction? textInputAction,
   }) : super(
           builder: (field) {
             return CusTextField(
               key: key,
+              textInputAction: textInputAction,
               controller: field.textController,
               lable: formItem.lable,
               lableText: formItem.lableText,
@@ -32,7 +34,6 @@ class CusPhoneFormField extends CusFormField<String> {
 }
 
 class _CusPhoneFormFieldState extends CusFormFieldState<String> {
-
   @override
   void initState() {
     item.updateType(FormItemType.phone);

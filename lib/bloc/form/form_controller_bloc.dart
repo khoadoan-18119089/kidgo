@@ -75,10 +75,6 @@ mixin FormControllerMixin on Bloc<FormControllerEvent, FormUpdate> {
     return _data;
   }
 
-  String otp() {
-    return _data.values.join('');
-  }
-
   void init({
     bool Function()? fieldDidChange,
     void Function()? reset,

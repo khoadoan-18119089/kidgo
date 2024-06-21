@@ -28,6 +28,12 @@ class MyIcons {
 
   /// assets/icon/birth.png
   static String birth = MyIconsBase.icons('birth.png');
+
+  /// assets/icon/alert_right.png
+  static String alertRight = MyIconsBase.icons('alert_right.png');
+
+  /// assets/icon/alert_wrong.png
+  static String alertWrong = MyIconsBase.icons('alert_wrong.png');
 }
 
 class MyIconsBase {

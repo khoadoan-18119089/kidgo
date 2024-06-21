@@ -53,6 +53,32 @@ class MyApp extends StatelessWidget {
     Navigator.pop(context, result);
   }
 
+  ///Quay về màn hình trước đó cho đến khi gặp được màn hình mà chúng ta định danh cụ thể
+  static void popUntil(
+    BuildContext context, {
+    required Screems screem,
+  }) {
+    return Navigator.popUntil(
+      context,
+      ModalRoute.withName(screem.path),
+    );
+  }
+
+  ///Quay lại màn hình trước đó, đồng thời cũng chuyển luôn qua màn hình mới
+  static Future<T?> popAndPushNamed<T extends Object?, TO extends Object?>(
+    BuildContext context, {
+    required Screems screem,
+    TO? result,
+    Object? arguments,
+  }) {
+    return Navigator.popAndPushNamed(
+      context,
+      screem.path,
+      result: result,
+      arguments: arguments,
+    );
+  }
+
   static void unfocus() {
     _focusManager.primaryFocus?.unfocus();
   }

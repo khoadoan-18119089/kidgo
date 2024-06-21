@@ -1,5 +1,4 @@
-import 'package:intl/intl.dart';
-import 'package:kidgo/components/form/form_item.dart/extension/format_ext.dart';
+import 'package:kidgo/commom/format.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 
 extension DisplayEXT<T> on FormItem<T> {
@@ -31,14 +30,15 @@ extension DisplayEXT<T> on FormItem<T> {
   String _phone(T? value) {
     String? phone;
     if (value is String) phone = value;
-    return formatPhoneNumber(phone ?? '');
+    if (phone == null) return '';
+    return phone.phoneNumber();
   }
 
   String _dateTime(T? value) {
     DateTime? date;
     if (value is DateTime) date = value;
     if (date == null) return '';
-    return DateFormat('dd/MM/yyyy').format(date);
+    return date.toDate();
   }
 
   String _otp(T? value) {

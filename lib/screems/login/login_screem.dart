@@ -1,7 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 import 'package:kidgo/commom/field_name.dart';
 import 'package:kidgo/commom/icon.dart';
 import 'package:kidgo/components/cus_button.dart';
@@ -23,7 +21,7 @@ class LoginScreem extends StatelessWidget {
       onTap: MyApp.unfocus,
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16.0),
           child: CusForm(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,9 +63,7 @@ class LoginScreem extends StatelessWidget {
           isExpanded: true,
           disable: !canSave,
           text: 'Đăng nhập',
-          onPressed: () {
-            print(context.read<FormControllerBloc>().saveTempData());
-          },
+          onPressed: () {},
         );
       }),
     );

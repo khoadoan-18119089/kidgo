@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kidgo/commom/methods.dart';
 import 'package:kidgo/components/form/cus_form_field.dart';
+import 'package:kidgo/components/form/cus_otp_form_field.dart';
 import 'package:kidgo/components/form/cus_text_field.dart';
 import 'package:kidgo/components/form/form_item.dart/extension/format_ext.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
@@ -10,13 +10,11 @@ class CusSingleOtpFormField extends CusFormField<int> {
   CusSingleOtpFormField({
     super.key,
     required super.formItem,
-    this.nextAction,
-    this.previousAction,
+    this.textInputAction,
     void Function(String)? onChanged,
   }) : super(
           builder: (field) {
             return SizedBox(
-              height: 60,
               width: 50,
               child: CusTextField(
                 autofocus: true,
@@ -25,9 +23,30 @@ class CusSingleOtpFormField extends CusFormField<int> {
                 keyboardType: TextInputType.number,
                 controller: field.textController,
                 maxLength: 1,
+                maxLines: 1,
+                minLines: 1,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0XFF1E5568),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0XFF1E5568),
+                      width: 2,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0XFF1E5568),
+                      width: 2,
+                    ),
+                  ),
                   counterText: '',
+                  filled: true,
+                  fillColor: Colors.transparent,
                 ),
                 onChanged: (value) {
                   field.didChange(formItem.tryCast(value));
@@ -37,9 +56,7 @@ class CusSingleOtpFormField extends CusFormField<int> {
           },
         );
 
-  final TextInputAction? nextAction;
-
-  final TextInputAction? previousAction;
+  final TextAction? textInputAction;
 
   @override
   CusFormFieldState<int> createState() => _CusSingleOtpFormFieldState();
@@ -49,9 +66,7 @@ class _CusSingleOtpFormFieldState extends CusFormFieldState<int> {
   @override
   CusSingleOtpFormField get widget => super.widget as CusSingleOtpFormField;
 
-  TextInputAction? get _nextAction => widget.nextAction;
-
-  TextInputAction? get _previousAction => widget.previousAction;
+  TextAction? get _textInputAction => widget.textInputAction;
 
   @override
   void initState() {
@@ -62,14 +77,13 @@ class _CusSingleOtpFormFieldState extends CusFormFieldState<int> {
   @override
   void didChange(int? value) {
     if (value != null) {
-      if (_nextAction == TextInputAction.next) {
+      if (_textInputAction == TextAction.last) {
+        MyApp.unfocus();
+      } else {
         MyApp.nextFocus();
       }
-      if (_nextAction == TextInputAction.done) {
-        MyApp.unfocus();
-      }
     } else {
-      if (_previousAction == TextInputAction.previous) {
+      if (_textInputAction != TextAction.first) {
         MyApp.previousFocus();
       }
     }

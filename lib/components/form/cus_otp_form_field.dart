@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:kidgo/components/form/cus_single_otp_form_field.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 
+enum TextAction {
+  first,
+  last,
+}
+
 class CusOtpFormField extends StatelessWidget {
   const CusOtpFormField({super.key});
 
@@ -19,10 +24,11 @@ class CusOtpFormField extends StatelessWidget {
             formItem: FormItem<int>(
               fieldName: index.toString(),
             ),
-            nextAction: index == otpLength - 1
-                ? TextInputAction.done
-                : TextInputAction.next,
-            previousAction: index == 0 ? null : TextInputAction.previous,
+            textInputAction: index == 0
+                ? TextAction.first
+                : index == otpLength - 1
+                    ? TextAction.last
+                    : null,
           );
         },
       ),

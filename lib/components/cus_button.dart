@@ -16,6 +16,7 @@ class CusButton extends StatelessWidget {
     bool disable = false,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
+    Color? color,
     required void Function()? onPressed,
   })  : _type = ButtonType.text,
         _text = text,
@@ -24,6 +25,7 @@ class CusButton extends StatelessWidget {
         _disable = disable,
         _padding = padding,
         _margin = margin,
+        _color = color,
         _onPressed = onPressed,
         _isExpanded = false;
 
@@ -36,6 +38,7 @@ class CusButton extends StatelessWidget {
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
     bool isExpanded = false,
+    Color? color,
     required void Function()? onPressed,
   })  : _type = ButtonType.elevated,
         _text = text,
@@ -44,6 +47,7 @@ class CusButton extends StatelessWidget {
         _disable = disable,
         _padding = padding,
         _margin = margin,
+        _color = color,
         _onPressed = onPressed,
         _isExpanded = isExpanded;
 
@@ -65,15 +69,18 @@ class CusButton extends StatelessWidget {
 
   final bool _isExpanded;
 
+  final Color? _color;
+
   Widget _elevatedBtn(BuildContext context) {
     return ElevatedButton(
       style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
           padding: WidgetStatePropertyAll<EdgeInsetsGeometry?>(_padding),
-          minimumSize: WidgetStatePropertyAll(
+          minimumSize: WidgetStatePropertyAll<Size?>(
             _isExpanded
                 ? const Size(double.infinity, double.infinity)
                 : const Size(0, 0),
-          )),
+          ),
+          backgroundColor: WidgetStatePropertyAll<Color?>(_color)),
       onPressed: _disable ? null : _onPressed,
       child: CusText.button(_text),
     );

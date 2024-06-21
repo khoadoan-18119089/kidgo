@@ -59,10 +59,10 @@ class CusFormFieldState<T> extends FormFieldState<T> {
   }
 
   void updateTextController() {
-    textController.text = item.display(value);
     textController.selection = TextSelection.collapsed(
       offset: textController.text.length,
     );
+    textController.text = item.display(value);
   }
 
   @override
@@ -83,8 +83,8 @@ class CusFormFieldState<T> extends FormFieldState<T> {
 
   @override
   void reset() {
-    super.reset();
     updateTextController();
+    super.reset();
   }
 
   @override

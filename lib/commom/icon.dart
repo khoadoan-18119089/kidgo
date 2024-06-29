@@ -26,14 +26,35 @@ class MyIcons {
   /// assets/icon/pass.png
   static String pass = MyIconsBase.icons('pass.png');
 
-  /// assets/icon/birth.png
-  static String birth = MyIconsBase.icons('birth.png');
+  /// assets/icon/calendar.png
+  static String calendar = MyIconsBase.icons('calendar.png');
 
   /// assets/icon/alert_right.png
   static String alertRight = MyIconsBase.icons('alert_right.png');
 
   /// assets/icon/alert_wrong.png
   static String alertWrong = MyIconsBase.icons('alert_wrong.png');
+
+  /// assets/icon/car.png
+  static String car = MyIconsBase.icons('car.png');
+
+  /// assets/icon/book.png
+  static String book = MyIconsBase.icons('book.png');
+
+  /// assets/icon/phone_call.png
+  static String phoneCall = MyIconsBase.icons('phone_call.png');
+
+  /// assets/icon/menu.png
+  static String menu = MyIconsBase.icons('menu.png');
+
+  /// assets/icon/arrow_right.png
+  static String arrowRight = MyIconsBase.icons('arrow_right.png');
+
+  /// assets/icon/wallet.png
+  static String wallet = MyIconsBase.icons('wallet.png');
+
+  /// assets/icon/coins_hand.png
+  static String coinsHand = MyIconsBase.icons('coins_hand.png');
 }
 
 class MyIconsBase {

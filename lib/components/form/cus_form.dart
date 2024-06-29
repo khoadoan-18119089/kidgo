@@ -5,7 +5,7 @@ import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 import 'package:kidgo/components/form/cus_form_field.dart';
 
 class CusForm<T extends FormControllerBloc> extends Form {
-  const  CusForm({
+  const CusForm({
     super.key,
     this.controller,
     this.updateInformation = false,
@@ -25,8 +25,10 @@ class CusFormState<T extends FormControllerBloc> extends FormState {
 
   final Set<CusFormFieldState> _fields = <CusFormFieldState>{};
 
-  late FormControllerBloc _controller ;
+  late FormControllerBloc _controller;
   FormControllerBloc get controller => _controller;
+
+  bool get updateInformation => widget.updateInformation;
 
   @override
   void initState() {
@@ -43,7 +45,7 @@ class CusFormState<T extends FormControllerBloc> extends FormState {
   }
 
   bool fieldDidChange() {
-    return widget.updateInformation
+    return updateInformation
         ? _fields.any(
             (CusFormFieldState field) => field.didChangeValue,
           )

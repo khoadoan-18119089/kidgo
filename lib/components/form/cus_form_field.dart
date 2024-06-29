@@ -38,11 +38,14 @@ class CusFormFieldState<T> extends FormFieldState<T> {
 
   T? get initialValue => item.initialValue;
 
-  bool get didChangeValue =>
-      initialValue != value && item.validator(value) == null;
+  bool get didChangeValue => updateInformation
+      ? initialValue != value && item.validator(value) == null
+      : item.validator(value) == null;
 
-  CusFormState formState(BuildContext context) {
-    return Form.of(context) as CusFormState;
+  bool get updateInformation => formState(context)?.updateInformation ?? false;
+
+  CusFormState? formState(BuildContext context) {
+    return Form.maybeOf(context) as CusFormState?;
   }
 
   @override
@@ -53,7 +56,7 @@ class CusFormFieldState<T> extends FormFieldState<T> {
 
   @override
   void deactivate() {
-    formState(context).unRegister(this);
+    formState(context)?.unRegister(this);
     formController?.close();
     super.deactivate();
   }
@@ -101,8 +104,8 @@ class CusFormFieldState<T> extends FormFieldState<T> {
 
   @override
   Widget build(BuildContext context) {
-    formState(context).register(this);
-    _formController = (Form.of(context) as CusFormState).controller;
+    formState(context)?.register(this);
+    _formController = formState(context)?.controller;
     return super.build(context);
   }
 }

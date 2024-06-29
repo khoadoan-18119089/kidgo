@@ -10,10 +10,10 @@ import 'package:kidgo/components/form/cus_form.dart';
 import 'package:kidgo/components/form/cus_form_save.dart';
 import 'package:kidgo/components/form/cus_otp_form_field.dart';
 import 'package:kidgo/main.dart';
-import 'package:kidgo/my_app/route/screems.dart';
+import 'package:kidgo/my_app/route/screens.dart';
 
-class OtpScreem extends StatelessWidget {
-  const OtpScreem({super.key});
+class OtpScreen extends StatelessWidget {
+  const OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,7 @@ class OtpScreem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 100),
-              const CusText.titleLarge('Mã OTP đã'),
-              const CusText.titleLarge('được gửi'),
+              const CusText.titleLarge('Mã OTP đã\nđược gửi'),
               const CusText.bodyMedium(
                   'Hãy điền mã OTP từ điện thoại của bạn để xác nhận.'),
               const SizedBox(height: 16),
@@ -86,8 +85,7 @@ class OtpScreem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CusText.titleLarge('Tạo tài khoản mới'),
-          CusText.titleLarge('thành công!'),
+          CusText.titleLarge('Tạo tài khoản mới\nthành công!'),
           CusText.bodyMedium(
               'Vui lòng quay lại để đăng nhập vào tài khoản mới.'),
         ],
@@ -99,7 +97,7 @@ class OtpScreem extends StatelessWidget {
       textBotton: 'Quay lại',
       onPressed: () => MyApp.popUntil(
         context,
-        screem: Screems.login,
+        screen: Screens.login,
       ),
     );
   }
@@ -110,8 +108,7 @@ class OtpScreem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CusText.titleLarge('Không xác nhận'),
-          CusText.titleLarge('được mã OTP'),
+          CusText.titleLarge('Không xác nhận\nđược mã OTP'),
           CusText.bodyMedium('Vui lòng thử lại.'),
         ],
       ),

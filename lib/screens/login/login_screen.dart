@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kidgo/bloc/form/form_controller_bloc.dart';
 import 'package:kidgo/commom/field_name.dart';
 import 'package:kidgo/commom/icon.dart';
+import 'package:kidgo/commom/methods.dart';
 import 'package:kidgo/components/cus_button.dart';
 import 'package:kidgo/components/cus_icon.dart';
 import 'package:kidgo/components/cus_text.dart';
@@ -10,10 +13,10 @@ import 'package:kidgo/components/form/cus_form_save.dart';
 import 'package:kidgo/components/form/cus_phone_form_field.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 import 'package:kidgo/main.dart';
-import 'package:kidgo/my_app/route/screems.dart';
+import 'package:kidgo/my_app/route/screens.dart';
 
-class LoginScreem extends StatelessWidget {
-  const LoginScreem({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,7 @@ class LoginScreem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 100),
-                const CusText.titleLarge('Chào mừng'),
-                const CusText.titleLarge('bạn!'),
+                const CusText.titleLarge('Chào mừng\nbạn!'),
                 const CusText.bodyMedium(
                     'Hãy đăng nhập tài khoản để tiếp tục.'),
                 const SizedBox(height: 16),
@@ -52,6 +54,7 @@ class LoginScreem extends StatelessWidget {
         hintText: 'Số điện thoại',
         isRequired: true,
         fieldName: FieldName.phoneNumber,
+        initialValue: MyApp.prefs.phomeNumber,
       ),
     );
   }
@@ -63,7 +66,19 @@ class LoginScreem extends StatelessWidget {
           isExpanded: true,
           disable: !canSave,
           text: 'Đăng nhập',
-          onPressed: () {},
+          onPressed: () {
+            String number = Methods.getString(
+              context.read<FormControllerBloc>().saveTempData(),
+              fieldName: FieldName.phoneNumber,
+            );
+            if (number == '(037) 968 3482') {
+              MyApp.prefs.saveUser(
+                phone: number,
+                date: DateTime.now(),
+              );
+              MyApp.to(context, screen: Screens.home);
+            }
+          },
         );
       }),
     );
@@ -80,7 +95,7 @@ class LoginScreem extends StatelessWidget {
                   fontSize: 13,
                 ),
             recognizer: TapGestureRecognizer()
-              ..onTap = () => MyApp.to(context, screem: Screems.signup),
+              ..onTap = () => MyApp.to(context, screen: Screens.signup),
           ),
         ],
       ),

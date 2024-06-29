@@ -18,9 +18,13 @@ class CusText extends StatelessWidget {
     super.key,
     TextAlign? textAlign,
     TextStyle? style,
+    int? maxLines,
+    TextOverflow? overflow,
   })  : _type = TextType.nomal,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = style,
         _fontSize = null,
         _color = null,
@@ -31,12 +35,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.titleLarge,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -47,12 +55,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.titleMedium,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -63,12 +75,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.titleSmall,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -79,12 +95,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.bodyMedium,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -95,12 +115,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.labelMedium,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -111,12 +135,16 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
   })  : _type = TextType.button,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = null,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -127,6 +155,8 @@ class CusText extends StatelessWidget {
     String data, {
     super.key,
     TextAlign? textAlign,
+    int? maxLines,
+    TextOverflow? overflow,
     TextStyle? style,
     double? fontSize,
     FontWeight? fontWeight,
@@ -135,6 +165,8 @@ class CusText extends StatelessWidget {
   })  : _type = TextType.rich,
         _data = data,
         _textAlign = textAlign,
+        _maxLines = maxLines,
+        _overflow = overflow,
         _style = style,
         _fontSize = fontSize,
         _fontWeight = fontWeight,
@@ -156,6 +188,10 @@ class CusText extends StatelessWidget {
   final FontWeight? _fontWeight;
 
   final List<InlineSpan>? _children;
+
+  final int? _maxLines;
+
+  final TextOverflow? _overflow;
 
   TextStyle? _textStyle(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -213,6 +249,8 @@ class CusText extends StatelessWidget {
     if (_type == TextType.rich) {
       return RichText(
         textAlign: _textAlign ?? TextAlign.start,
+        maxLines: _maxLines,
+        overflow: _overflow ?? TextOverflow.clip,
         text: TextSpan(
           text: _data,
           children: _children,
@@ -223,6 +261,8 @@ class CusText extends StatelessWidget {
     return Text(
       _data,
       textAlign: _textAlign,
+      maxLines: _maxLines,
+      overflow: _overflow,
       style: _textStyle(context),
     );
   }

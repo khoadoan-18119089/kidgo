@@ -19,6 +19,8 @@ extension ValidatorEXT<T> on FormItem<T> {
         return _radio(value);
       case FormItemType.otp:
         return null;
+      case FormItemType.dropdown:
+        return null;
     }
   }
 

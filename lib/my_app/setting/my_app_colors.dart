@@ -4,6 +4,8 @@ import 'package:kidgo/my_app/setting/my_app_theme.dart';
 extension MyAppColors on MyAppTheme {
   Color get scaffoldBackgroundColor => const Color(0XFFE3F5FC);
 
+  Color get appbarBackgroundColor => const Color(0XFFE3F5FC);
+
   Color get titleColor => const Color(0XFF1E5568);
 
   Color get bodyColor => const Color(0XFF328EAE);

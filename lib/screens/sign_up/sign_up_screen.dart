@@ -13,10 +13,10 @@ import 'package:kidgo/components/form/cus_radio_form_field.dart';
 import 'package:kidgo/components/form/cus_text_form_field.dart';
 import 'package:kidgo/components/form/form_item.dart/form_item_model.dart';
 import 'package:kidgo/main.dart';
-import 'package:kidgo/my_app/route/screems.dart';
+import 'package:kidgo/my_app/route/screens.dart';
 
-class SignUpScreem extends StatelessWidget {
-  const SignUpScreem({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,7 @@ class SignUpScreem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 100),
-                const CusText.titleLarge('Tạo tài khoản'),
-                const CusText.titleLarge('mới'),
+                const CusText.titleLarge('Tạo tài khoản\nmới'),
                 const CusText.bodyMedium(
                     'Vui lòng nhập thông tin vào ô trống để tạo tài khoản.'),
                 const SizedBox(height: 16),
@@ -110,7 +109,7 @@ class SignUpScreem extends StatelessWidget {
 
   Widget _birth() {
     return CusDateTimeFormField(
-      prefixIcon: CusIcon(icon: MyIcons.birth),
+      prefixIcon: CusIcon(icon: MyIcons.calendar),
       formItem: FormItem<DateTime>(
         fieldName: FieldName.birth,
         isRequired: true,
@@ -144,7 +143,7 @@ class SignUpScreem extends StatelessWidget {
             // disable: !canSave,
             text: 'Xác nhận',
             onPressed: () {
-              MyApp.to(context, screem: Screems.otp);
+              MyApp.to(context, screen: Screens.otp);
             },
           );
         },

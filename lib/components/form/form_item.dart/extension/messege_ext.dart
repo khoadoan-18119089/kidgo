@@ -25,6 +25,8 @@ extension MessegeEXT<T> on FormItem<T> {
         return 'Vui lòng chọn thông tin';
       case FormItemType.otp:
         return '';
+      case FormItemType.dropdown:
+        return '';
     }
   }
 }

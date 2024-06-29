@@ -22,6 +22,7 @@ mixin FormControllerMixin on Bloc<FormControllerEvent, FormUpdate> {
   }
 
   void onChanged(BuildContext context) {
+    print(fieldDidChange());
     if (state.fieldDidChange != fieldDidChange()) {
       context.read<FormControllerBloc>().add(DidChangeEvent());
     }

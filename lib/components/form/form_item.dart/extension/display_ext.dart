@@ -17,7 +17,9 @@ extension DisplayEXT<T> on FormItem<T> {
       case FormItemType.radio:
         return '';
       case FormItemType.otp:
-        return _otp(value);
+        return _int(value);
+      case FormItemType.dropdown:
+        return '';
     }
   }
 
@@ -41,10 +43,10 @@ extension DisplayEXT<T> on FormItem<T> {
     return date.toDate();
   }
 
-  String _otp(T? value) {
-    int? otp;
-    if (value is int) otp = value;
-    if (otp == null) return '';
-    return otp.toString();
+  String _int(T? value) {
+    int? number;
+    if (value is int) number = value;
+    if (number == null) return '';
+    return number.toString();
   }
 }

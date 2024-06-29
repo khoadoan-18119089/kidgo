@@ -4,6 +4,7 @@ import 'package:kidgo/components/cus_text.dart';
 enum ButtonType {
   text,
   elevated,
+  icon,
   ;
 }
 
@@ -27,6 +28,9 @@ class CusButton extends StatelessWidget {
         _margin = margin,
         _color = color,
         _onPressed = onPressed,
+        _icon = null,
+        _size = null,
+        _minSize = null,
         _isExpanded = false;
 
   const CusButton.elevated({
@@ -49,7 +53,34 @@ class CusButton extends StatelessWidget {
         _margin = margin,
         _color = color,
         _onPressed = onPressed,
+        _icon = null,
+        _size = null,
+        _minSize = null,
         _isExpanded = isExpanded;
+
+  const CusButton.icon({
+    super.key,
+    required Widget icon,
+    double? size = 24,
+    double? minSize = 48,
+    bool disable = false,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
+    Color? color,
+    required void Function()? onPressed,
+  })  : _type = ButtonType.icon,
+        _text = '',
+        _height = null,
+        _width = null,
+        _disable = disable,
+        _padding = padding,
+        _margin = margin,
+        _color = color,
+        _onPressed = onPressed,
+        _icon = icon,
+        _size = size,
+        _minSize = minSize,
+        _isExpanded = false;
 
   final ButtonType _type;
 
@@ -70,6 +101,12 @@ class CusButton extends StatelessWidget {
   final bool _isExpanded;
 
   final Color? _color;
+
+  final Widget? _icon;
+
+  final double? _size;
+
+  final double? _minSize;
 
   Widget _elevatedBtn(BuildContext context) {
     return ElevatedButton(
@@ -96,12 +133,34 @@ class CusButton extends StatelessWidget {
     );
   }
 
+  Widget _iconBtn(BuildContext context) {
+    return IconButton(
+      padding: _padding ?? const EdgeInsets.all(0),
+      splashRadius: _size! * 0.6,
+      iconSize: _size,
+      constraints: BoxConstraints(
+        minWidth: _minSize!,
+        minHeight: _minSize,
+      ),
+      splashColor: Colors.transparent,
+      icon: Center(
+        child: IconTheme.merge(
+          data: IconThemeData(size: _size),
+          child: _icon!,
+        ),
+      ),
+      onPressed: _disable ? null : _onPressed,
+    );
+  }
+
   Widget _btn(BuildContext context) {
     switch (_type) {
       case ButtonType.text:
         return _textBtn(context);
       case ButtonType.elevated:
         return _elevatedBtn(context);
+      case ButtonType.icon:
+        return _iconBtn(context);
     }
   }
 

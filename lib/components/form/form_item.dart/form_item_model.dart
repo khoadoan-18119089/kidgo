@@ -10,6 +10,7 @@ enum FormItemType {
   dateTime(DateTime),
   radio(int),
   otp(int),
+  dropdown(int),
   ;
 
   final Type? type;

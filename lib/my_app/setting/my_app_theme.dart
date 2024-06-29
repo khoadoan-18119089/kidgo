@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kidgo/my_app/setting/my_app_appbar_theme.dart';
 import 'package:kidgo/my_app/setting/my_app_button_theme.dart';
 import 'package:kidgo/my_app/setting/my_app_colors.dart';
 import 'package:kidgo/my_app/setting/my_app_icon_theme.dart';
@@ -18,5 +19,6 @@ class MyAppTheme {
         inputDecorationTheme: inputDecorationTheme,
         iconTheme: myAppIconTheme,
         radioTheme: myAppRadioTheme,
+        appBarTheme: myAppAppbarTheme,
       );
 }

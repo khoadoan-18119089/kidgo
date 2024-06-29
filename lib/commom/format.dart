@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 extension StringEXT on String {
-
   ///(037) 968 3482
   String phoneNumber() {
     RegExpMatch? match;
@@ -28,7 +27,7 @@ extension StringEXT on String {
   }
 }
 
-extension DurationEXT on Duration {
+extension DurationEXT on Duration? {
   String _toTwoDigits(int n) {
     if (n >= 10) return '$n';
     return '0$n';
@@ -36,30 +35,61 @@ extension DurationEXT on Duration {
 
   /// 05:24:30
   String toHHMMSS() {
-    String hours = _toTwoDigits(inHours.remainder(24));
-    String minutes = _toTwoDigits(inMinutes.remainder(60));
-    String seconds = _toTwoDigits(inSeconds.remainder(60));
+    if (this == null) return '';
+    String hours = _toTwoDigits(this!.inHours.remainder(24));
+    String minutes = _toTwoDigits(this!.inMinutes.remainder(60));
+    String seconds = _toTwoDigits(this!.inSeconds.remainder(60));
     return '$hours:$minutes:$seconds';
   }
 
   /// 05:24
   String toHHMM() {
-    String hours = _toTwoDigits(inHours.remainder(24));
-    String minutes = _toTwoDigits(inMinutes.remainder(60));
+    if (this == null) return '';
+    String hours = _toTwoDigits(this!.inHours.remainder(24));
+    String minutes = _toTwoDigits(this!.inMinutes.remainder(60));
     return '$hours:$minutes';
+  }
+
+  String toAMPM() {
+    if (this == null) return '';
+    if (this!.inHours > 12) {
+      return '${toHHMM()} PM';
+    } else {
+      return '${toHHMM()} AM';
+    }
   }
 
   /// 24:30
   String toMMSS() {
-    String minutes = _toTwoDigits(inMinutes.remainder(60));
-    String seconds = _toTwoDigits(inSeconds.remainder(60));
+    if (this == null) return '';
+    String minutes = _toTwoDigits(this!.inMinutes.remainder(60));
+    String seconds = _toTwoDigits(this!.inSeconds.remainder(60));
     return '$minutes:$seconds';
   }
 }
 
-extension DateTimeEXT on DateTime {
+extension DateTimeEXT on DateTime? {
+  static const String _languageCode = 'vi';
+
+  String _toTwoDigits(int n) {
+    if (n >= 10) return '$n';
+    return '0$n';
+  }
+
   ///12/04/2024
   String toDate() {
-    return DateFormat('dd/MM/yyyy').format(this);
+    if (this == null) return '';
+    return DateFormat('dd/MM/yyyy', _languageCode).format(this!);
+  }
+
+  ///Ngày 22 tháng 3 năm 2024
+  String tofullDate() {
+    if (this == null) return '';
+    return 'Ngày ${_toTwoDigits(this!.day)} tháng ${_toTwoDigits(this!.month)} năm ${this!.year}';
+  }
+
+  String toWeekDay() {
+    if (this == null) return '';
+    return DateFormat('EEEE', _languageCode).format(this!);
   }
 }

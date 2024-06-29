@@ -9,6 +9,7 @@ class CusTextFormField extends CusFormField<String> {
     required super.formItem,
     Widget? prefixIcon,
     TextInputAction? textInputAction,
+    int? maxLines = 1,
   }) : super(
           builder: (field) {
             return CusTextField(
@@ -21,6 +22,7 @@ class CusTextFormField extends CusFormField<String> {
               hintText: formItem.hintText,
               errorText: field.errorText,
               keyboardType: TextInputType.text,
+              maxLines: maxLines,
               onChanged: (value) {
                 field.didChange(formItem.tryCast(value));
               },

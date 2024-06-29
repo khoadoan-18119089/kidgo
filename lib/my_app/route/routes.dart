@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:kidgo/my_app/route/page_route.dart';
-import 'package:kidgo/my_app/route/screems.dart';
+import 'package:kidgo/my_app/route/screens.dart';
 
 class Routes {
   Routes._();
   factory Routes() => intanse;
   static final Routes intanse = Routes._();
 
-  String get initialRoute => Screems.review.path;
+  String get initialRoute => Screens.splash.path;
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (Screems.formPath(settings.name)) {
-      case Screems.unKnow:
+    switch (Screens.formPath(settings.name)) {
+      case Screens.unKnow:
         return unKnow(settings);
-      case Screems.splash:
+      case Screens.splash:
         return splash(settings);
-      case Screems.review:
+      case Screens.review:
         return review(settings);
-      case Screems.login:
+      case Screens.login:
         return login(settings);
-      case Screems.signup:
+      case Screens.signup:
         return signup(settings);
-      case Screems.otp:
+      case Screens.otp:
         return otp(settings);
+      case Screens.home:
+        return home(settings);
+      case Screens.calendar:
+        return calendar(settings);
+      case Screens.bookTheCar:
+        return bookTheCar(settings);
+      case Screens.blog:
+        return blog(settings);
+      case Screens.contact:
+        return contact(settings);
+      case Screens.account:
+        return account(settings);
+      case Screens.transactionHistories:
+        return transactionHistories(settings);
     }
   }
 }

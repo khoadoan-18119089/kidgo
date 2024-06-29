@@ -4,10 +4,10 @@ import 'package:kidgo/components/cus_button.dart';
 import 'package:kidgo/components/cus_text.dart';
 import 'package:kidgo/main.dart';
 import 'package:kidgo/models/review_model.dart';
-import 'package:kidgo/my_app/route/screems.dart';
+import 'package:kidgo/my_app/route/screens.dart';
 
-class ReviewScreem extends StatelessWidget {
-  ReviewScreem({super.key});
+class ReviewScreen extends StatelessWidget {
+  ReviewScreen({super.key});
 
   final PageController _controller = PageController(initialPage: 0);
   List<ReviewModel> get _listReview => [
@@ -192,7 +192,7 @@ class _IndicatorState extends State<Indicator> {
       text: 'Bắt đầu',
       onPressed: () => MyApp.to(
         context,
-        screem: Screems.login,
+        screen: Screens.login,
       ),
     );
   }
